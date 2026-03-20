@@ -1,0 +1,24 @@
+name: demo-openshell-policy
+mode: deny_by_default
+filesystem:
+  allow_read:
+    - data/workspace/logs
+  allow_write:
+    - output
+  deny_read:
+    - data/secrets
+network:
+  allow_domains:
+    - api.groq.com
+  deny_all_other: true
+process:
+  allow_binaries:
+    - python
+    - uvicorn
+privacy_router:
+  local_patterns:
+    - SSN
+    - PASSWORD
+    - API_KEY
+  frontier_domains:
+    - api.groq.com
